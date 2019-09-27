@@ -1,0 +1,36 @@
+<div [formGroup]="folderForm">
+  <div class="col-md-12">
+    <div class="form-group">
+      <h1>Folder viewer</h1>
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="path" />
+        <span *ngIf="!isLoading" class="input-group-btn">
+          <button type="button" class="btn btn-info" [disabled]="!folderForm.valid" (click)="submitForm()">Submit</button>
+        </span>
+        <span *ngIf="isLoading" class="input-group-btn">
+          <button type="button" class="btn btn-info" (click)="cancel()">Cancel</button>
+        </span>
+      </div>
+    </div>
+    <span class="text-danger" *ngIf="path.invalid && path.errors.required && (path.dirty || path.touched)">
+      Path is required.
+    </span>
+    <span class="text-danger" *ngIf="path.hasError('pattern') && (path.dirty || path.touched)">
+      Please enter valid path
+    </span>
+    <ng-container *ngIf="(folders | async) as folderCollection">
+      <div *ngIf="(folderCollection)?.length" class="folder-block">
+        <div class="grid-header">
+          <div class="folder">Folder name</div>
+          <div class="size">Size</div>
+        </div>
+        <ul class="grid">
+          <li class="instance-row" *ngFor="let folder of folderCollection">
+            <div class="folder">{{folder.name}}</div>
+            <div class="size">{{folder.size}}</div>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
+</div>

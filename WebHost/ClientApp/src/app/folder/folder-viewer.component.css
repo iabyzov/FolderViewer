@@ -1,0 +1,28 @@
+.folder-block {
+  width: 700px;
+}
+.grid-header {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  padding: 0 10px 0 20px;
+  font-size: 16px;
+}
+
+.folder {
+  flex: 2;
+}
+
+.size {
+  flex: 1;
+}
+
+.grid {
+  margin: 0;
+  padding: 0;
+}
+
+.instance-row {
+  display: flex;
+  padding: 0 10px 0 20px;
+}
